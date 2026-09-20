@@ -1,19 +1,14 @@
-class Solution {
-public:
-    int majorityElement(vector<int>& nums) {
-       
-        int candidate = 0;
-        int count = 0;
-        for(int num :  nums){
-            if(count == 0){
-                candidate = num;
-            }
-            if(num == candidate) {
-                count++;
-            } else {
-                count--;
-            }
+class Solution { 
+    public: 
+    int majorityElement(vector<int>& nums) { 
+        int n = nums.size(); 
+        unordered_map <int,int> freq_map; 
+        for(int i =0; i < n; i++){ 
+            freq_map[nums[i]]++; 
+        } 
+        for(auto& p : freq_map) { 
+            if(p.second > n/2) return p.first; 
         }
-        return candidate;
-    }
+        return -1;  
+    } 
 };
